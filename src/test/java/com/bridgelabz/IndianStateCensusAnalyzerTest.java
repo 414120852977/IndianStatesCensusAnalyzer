@@ -98,5 +98,20 @@ public class IndianStateCensusAnalyzerTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * given india state code info with wrong file path should throw exception
+     */
+    @Test
+    public void givenStateCodeInformation_WithWrongFilePath_ShouldThrowException() {
+        try {
+            StateCensusAnalyzer stateCensusAnalyser = new StateCensusAnalyzer();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            stateCensusAnalyser.loadStateCodeCensusData("./src/main/java/resources/IndiaStateCode.csv");
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
