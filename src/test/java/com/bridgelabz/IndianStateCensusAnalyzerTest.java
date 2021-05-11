@@ -113,5 +113,20 @@ public class IndianStateCensusAnalyzerTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * indian state code with wrong file type..
+     */
+    @Test
+    public void givenStateCodeInformation_WithWrongFileType_ShouldThrowException() {
+        try {
+            StateCensusAnalyzer stateCensusAnalyser = new StateCensusAnalyzer();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            stateCensusAnalyser.loadStateCodeCensusData("test/resources/IndiaStateCode.txt");
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
 }
 
