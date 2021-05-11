@@ -82,7 +82,7 @@ public class IndianStateCensusAnalyzerTest {
             exceptionRule.expect(CensusAnalyserException.class);
             censusAnalyser.loadIndiaCensusData(CSV_FILE_WITH_WRONG_DELIMITER);
         } catch (CensusAnalyserException x) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, x.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CSV_HEADER_PROBLEM, x.type);
         }
     }
 }
