@@ -29,5 +29,9 @@ public class CensusAnalyser {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
+        catch (Exception x) {
+            throw new CensusAnalyserException(x.getMessage(),
+                    CensusAnalyserException.ExceptionType.CSV_HEADER_PROBLEM);
+        }
     }
 }
