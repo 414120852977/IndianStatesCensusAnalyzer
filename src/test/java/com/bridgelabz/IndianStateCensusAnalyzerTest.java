@@ -1,9 +1,23 @@
 package com.bridgelabz;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class IndianStateCensusAnalyzerTest {
+    private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
+    private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
+
+    /**
+     * this test case checking given csv file should have correct records or not in it..
+     */
     @Test
-    public void addCSVFileIndianStateToReturnReadOfACSVFile()  {
+    public void givenIndianCensusCSVFileReturnsCorrectRecords() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            Assert.assertEquals(29,numOfRecords);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
     }
 }
