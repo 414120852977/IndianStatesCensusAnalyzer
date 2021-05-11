@@ -85,5 +85,18 @@ public class IndianStateCensusAnalyzerTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CSV_HEADER_PROBLEM, x.type);
         }
     }
+    /**
+     * with the file indian state code csv file returns correct records..
+     */
+    @Test
+    public void givenIndianStateCodeCSVFileReturnsCorrectRecords() {
+        try {
+            StateCensusAnalyzer stateCensusAnalyser = new StateCensusAnalyzer();
+            int numOfRecords = stateCensusAnalyser.loadStateCodeCensusData("test/resources/IndiaStateCode.csv");
+            Assert.assertEquals(37, numOfRecords);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
