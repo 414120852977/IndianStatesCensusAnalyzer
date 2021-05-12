@@ -9,8 +9,7 @@ public class IndianStateCensusAnalyzerTest {
     private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_TYPE = "./src/test/resources/IndiaStateCensusData.pdf";
     private static final String CSV_FILE_WITH_WRONG_DELIMITER = "./src/main/resources/IndiaStateCensusData.csv";
-    private static final String STATE_CODE_CSV_WITH_WRONG_DELIMITER = "main/resources/IndiaStateCode.csv";
-
+    private static final String STATE_CODE_CSV_WITH_WRONG_DELIMITER = "test/resources/IndiaStateCode.csv";
     /**
      * this test case checking given csv file should have correct records or not in it..
      */
@@ -67,7 +66,7 @@ public class IndianStateCensusAnalyzerTest {
             exceptionRule.expect(CensusAnalyserException.class);
             censusAnalyser.loadIndiaCensusData(CSV_FILE_WITH_WRONG_DELIMITER);
         } catch (CensusAnalyserException x) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.CSV_HEADER_PROBLEM, x.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, x.type);
         }
     }
 
@@ -83,7 +82,7 @@ public class IndianStateCensusAnalyzerTest {
             exceptionRule.expect(CensusAnalyserException.class);
             censusAnalyser.loadIndiaCensusData(CSV_FILE_WITH_WRONG_DELIMITER);
         } catch (CensusAnalyserException x) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.CSV_HEADER_PROBLEM, x.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, x.type);
         }
     }
     /**
@@ -96,7 +95,7 @@ public class IndianStateCensusAnalyzerTest {
             int numOfRecords = stateCensusAnalyser.loadStateCodeCensusData("test/resources/IndiaStateCode.csv");
             Assert.assertEquals(37, numOfRecords);
         } catch (CensusAnalyserException e) {
-            e.printStackTrace();
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
 
@@ -111,7 +110,8 @@ public class IndianStateCensusAnalyzerTest {
             exceptionRule.expect(CensusAnalyserException.class);
             stateCensusAnalyser.loadStateCodeCensusData("./src/main/java/resources/IndiaStateCode.csv");
         } catch (CensusAnalyserException e) {
-            e.printStackTrace();
+
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
 
